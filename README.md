@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Resume Screener" />
+  <img src="https://static.djangoproject.com/img/logos/django-logo-positive.png" alt="Django" />
 
   &#xa0;
 </div>
