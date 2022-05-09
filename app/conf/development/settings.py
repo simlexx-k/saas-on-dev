@@ -2,13 +2,18 @@ import os
 import warnings
 from django.utils.translation import ugettext_lazy as _
 from os.path import dirname
+from django.utils.crypto import get_random_string
+from decouple import config
+
 
 warnings.simplefilter('error', DeprecationWarning)
 
 BASE_DIR = dirname(dirname(dirname(dirname(os.path.abspath(__file__)))))
 CONTENT_DIR = os.path.join(BASE_DIR, 'content')
 
-SECRET_KEY = 'NhfTvayqggTBPswCXXhWaN69HuglgZIkM'
+chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+SECRET_KEY = get_random_string(50, chars)
+print(SECRET_KEY)
 
 DEBUG = True
 ALLOWED_HOSTS = []
@@ -70,8 +75,8 @@ EMAIL_FILE_PATH = os.path.join(CONTENT_DIR, 'tmp/emails')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'Your Email'
-EMAIL_HOST_PASSWORD = 'Your Password'
+EMAIL_HOST_USER = config('EMAIL')
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 
 DATABASES = {
     'default': {
@@ -106,7 +111,7 @@ USE_REMEMBER_ME = True
 RESTORE_PASSWORD_VIA_EMAIL_OR_USERNAME = False
 ENABLE_ACTIVATION_AFTER_EMAIL_CHANGE = True
 
-SIGN_UP_FIELDS = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+SIGN_UP_FIELDS = ['first_name', 'last_name', 'email', 'password1', 'password2']
 if DISABLE_USERNAME:
     SIGN_UP_FIELDS = ['first_name', 'last_name', 'email', 'password1', 'password2']
 
@@ -140,4 +145,3 @@ LOCALE_PATHS = [
     os.path.join(CONTENT_DIR, 'locale')
 ]
 
-ALLOWED_EXTENSIONS = ["doc", "docx", "pdf"]

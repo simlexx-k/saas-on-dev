@@ -12,11 +12,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="An example of Django project with basic user functionality.">
-    <meta name="author" content="Yehor Smoliakov">
-
     <link rel="icon" href="{% static 'favicon.ico' %}">
 
-    <title>Resume Screener</title>
+    <title>Correct Images</title>
 
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
@@ -27,7 +25,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light static-top main-navbar shadow">
     <div class="container">
-    <a class="navbar-brand" href="/">Resume Scanner</a>
+    <a class="navbar-brand" href="/">Correct Images</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault">
         <span class="navbar-toggler-icon"></span>
@@ -36,21 +34,6 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav ms-auto">
             {% if request.user.is_authenticated %}
-                {% if request.user.is_staff %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'resumes:hr_job_postings' %}">{% trans 'Post Job' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'resumes:your_jobs' %}">{% trans 'Your Jobs' %}</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'resumes:upload_resume' %}">{% trans 'Upload Resume' %}</a>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'resumes:job_listings' %}">{% trans 'Apply' %}</a>
-                    </li>
-
-                {% endif %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -100,7 +83,7 @@
 
 <div class="container-fluid mt-3">
 
-    {% bootstrap_messages %}
+    {% bootstrap_javascript jquery=True %}
 
     {% block content %}
         No content.
